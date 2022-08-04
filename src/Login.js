@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import './Login.css'
-import { Link, useHistory } from "react-router-dom";
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import { auth } from "./firebase";
+import { Link, useNavigate } from "react-router-dom";
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import { auth, firebaseApp } from "./firebase";
 
 function Login() {
-    const history = useHistory();
+    const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signIn = e => {
         e.preventDefault();
 
-        auth
+        // eslint-disable-next-line no-undef
+        firebaseApp.auth
             .signInWithEmailAndPassword(email, password)
             .then(auth => {
                 history.push('/');
@@ -24,7 +25,8 @@ function Login() {
     const register = e => {
         e.preventDefault();
 
-        auth
+        // eslint-disable-next-line no-undef
+        firebaseApp.auth
             .createUserWithEmailAndPassword(email, password)
             .then((auth) => {
                 if (auth) {
