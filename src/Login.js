@@ -12,9 +12,7 @@ function Login() {
     const signIn = e => {
         e.preventDefault();
 
-        // eslint-disable-next-line no-undef
-        firebaseApp.auth
-            .signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .then(auth => {
                 history.push('/');
             })
@@ -24,10 +22,8 @@ function Login() {
 
     const register = e => {
         e.preventDefault();
-
-        // eslint-disable-next-line no-undef
-        firebaseApp.auth
-            .createUserWithEmailAndPassword(email, password)
+            
+        auth.createUserWithEmailAndPassword(email, password)
             .then((auth) => {
                 if (auth) {
                     history.push('/');
